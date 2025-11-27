@@ -1,0 +1,86 @@
+.lose-item{
+  width: 100%;
+  display: flex;
+  padding: 20rpx;
+  background-color: #fff;
+
+  box-sizing: border-box;
+}
+.lose-item .lose-item-image {
+  width: 250rpx;
+  height: 250rpx;
+  min-width: 250rpx;
+  border-radius: 20rpx;
+}
+.lose-content {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10rpx;
+  width:100%;
+}
+.lose-content .name {
+  font-weight: bold;
+}
+.lose-content .region {
+  margin-top: 35rpx;
+}
+.lose-content .region, .date, .desc {
+  font-size: 26rpx;
+  margin-bottom: 5rpx;
+}
+.lose-content .desc {
+  color: #666;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 400rpx;
+}
+.lose-content .publish_time {
+  margin-top: 30rpx;
+  margin-left: auto;
+  color: #666;
+  font-size: 26rpx;
+}
+
+.lose-body {
+  background-color: #fff;
+  margin-bottom: 5rpx;
+  position: relative;
+  
+}
+
+.handle-btn {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.update-btn, .delete-btn {
+  margin-right: 20rpx;
+}
+
+.audit-status {
+  margin-top: 10rpx;
+  display: inline-block;
+}
+
+.audit-status text {
+  padding: 4rpx 12rpx;
+  border-radius: 8rpx;
+  font-size: 22rpx;
+}
+
+.status-waiting {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.status-passed {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.status-rejected {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+

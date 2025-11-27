@@ -1,0 +1,9 @@
+<view class="body">
+  <image class="logo" src="../../images/logo.png" />
+  <view class="container">
+    <input class="input" bindinput="getUsername" placeholder="请输入账号" type="text"/>
+    <input class="input" bindinput="getPassword" placeholder="请输入密码" password type="text"/>
+    <text class="to-register" bindtap="toRigester">去注册</text>
+    <button class="login-btn" type="primary" bindtap="submit">登录</button>
+  </view>
+</view>

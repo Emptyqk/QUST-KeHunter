@@ -1,3 +1,9 @@
 {
+  "usingComponents": {
+      "SearchInput":"../../components/SearchInput/SearchInput",
+      "Tab":"../../components/Tab/Tab",
+      "ViewCard":"../../components/Viewcard/ViewCard"
+
+  }
 
 }

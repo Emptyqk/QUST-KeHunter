@@ -1,0 +1,97 @@
+<view class="body">
+    <swiper class="banner" indicator-dots="true" autoplay="false" interval="2000" duration="500">
+        <block wx:for="{{ info.imgList }}" wx:key="*this">
+            <swiper-item>
+                <image class="banner-image" src="{{ item }}"></image>
+            </swiper-item>
+        </block>
+    </swiper>
+
+    <view class="name">{{ info.name }}</view>
+
+    <view class="container">
+        <view class="date item">
+            <text class="label">拾到时间</text>
+            <text>{{ info.date }}</text>
+        </view>
+        <view class="region item">
+            <text class="label">拾到地点</text>
+            <text>{{ info.region }}</text>
+        </view>
+        <view class="desc item">{{ info.desc }}</view>
+    </view>
+    <view class="comment">
+      <view class="title">评论区</view>
+      <view class="comment-list">
+        <view class="comment-item" wx:for="{{info.commentList}}" wx:key="index">
+          <view class="comment-item-left">
+            <image class="avatar" src="{{item.avatarUrl}}"></image>
+              <view class="content">
+                <text>{{item.nickName}}</text>
+                <text>{{item.content}}</text>
+              </view>
+          </view>
+          <view class="comment-item-right">
+            {{item.time}}
+          </view>
+        </view>
+      </view>
+      <view class="comment-input">
+        <textarea class="comment-textarea" placeholder="请输入您的评论" name="" id="" cols="30" rows="10" value="{{comment}}" bindinput="getComment"></textarea>
+        <button class="comment-button" type="primary" bindtap="submitComment" >发送</button>
+      </view>
+    </view>
+    <!-- 认领列表（发布者查看） -->
+    <view class="claim-section" wx:if="{{ isOwner && claimList.length > 0 }}">
+        <view class="claim-title">认领列表</view>
+        <view class="claim-list">
+            <view class="claim-item" wx:for="{{ claimList }}" wx:key="_id">
+                <view class="claim-item-info">
+                    <text class="claim-time">{{ item.claimTimeFormatted }}</text>
+                    <text class="claim-status">
+                        <text wx:if="{{ item.status === 0 }}">待确认</text>
+                        <text wx:elif="{{ item.status === 1 }}" class="status-confirmed">已确认</text>
+                        <text wx:elif="{{ item.status === 2 }}" class="status-rejected">已拒绝</text>
+                    </text>
+                </view>
+                <view class="claim-item-actions" wx:if="{{ item.status === 0 }}">
+                    <button class="claim-btn confirm-btn" size="mini" bindtap="confirmClaim" data-claimid="{{ item._id }}">确认</button>
+                    <button class="claim-btn reject-btn" size="mini" bindtap="rejectClaim" data-claimid="{{ item._id }}">拒绝</button>
+                </view>
+            </view>
+        </view>
+    </view>
+
+    <!-- 认领状态提示（非发布者） -->
+    <view class="claim-status-tip" wx:if="{{ !isOwner && claimStatus !== null && claimStatus !== undefined }}">
+        <text wx:if="{{ claimStatus === 0 }}" class="status-waiting">✓ 认领状态：待确认</text>
+        <text wx:elif="{{ claimStatus === 1 }}" class="status-confirmed">✓ 认领状态：已确认</text>
+        <text wx:elif="{{ claimStatus === 2 }}" class="status-rejected">✗ 认领状态：已拒绝</text>
+    </view>
+
+    <!-- 已认领状态提示 -->
+    <view class="claimed-tip" wx:if="{{ info.state === 1 && !isOwner }}">
+        <text>此失物/失主已被认领</text>
+    </view>
+
+    <view class="bottom">
+        <view class="bottom-left" bindtap="getPhone">
+            <text class="icon-text">📞</text>
+            <text>联系我</text>
+        </view>
+        <!-- 认领按钮（非发布者且未认领时显示） -->
+        <view class="bottom-claim" bindtap="toClaim">
+            <text class="claim-btn-text">
+                <text wx:if="{{ claimStatus === null || claimStatus === undefined }}">认领</text>
+                <text wx:elif="{{ claimStatus === 0 }}">取消认领</text>
+                <text wx:else>已认领</text>
+            </text>
+        </view>
+        <view class="bottom-right" bindtap="toCollection">
+            <image class="icon-collection" src="{{ collectionIcon[0] }}"></image>
+            <text>收藏</text>
+        </view>
+    </view>
+
+
+</view>
